@@ -6,11 +6,11 @@
 /*   By: mgayout <mgayout@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:44:25 by mgayout           #+#    #+#             */
-/*   Updated: 2024/04/04 17:00:22 by mgayout          ###   ########.fr       */
+/*   Updated: 2024/04/05 18:09:02 by mgayout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../philo.h"
+#include "../philo.h"
 
 void	update_lasteat(t_philo *philo)
 {

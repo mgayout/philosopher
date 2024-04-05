@@ -6,11 +6,11 @@
 /*   By: mgayout <mgayout@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:05:19 by mgayout           #+#    #+#             */
-/*   Updated: 2024/04/04 16:32:23 by mgayout          ###   ########.fr       */
+/*   Updated: 2024/04/05 14:10:17 by mgayout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../philo.h"
+#include "../philo.h"
 
 int	ft_atoi(char *str)
 {
@@ -46,7 +46,7 @@ int	digit_args(int argc, char **argv)
 	while (i < argc)
 	{
 		j = 0;
-		while(argv[i][j] != '\0')
+		while (argv[i][j] != '\0')
 		{
 			if (!(argv[i][j] >= '0' && argv[i][j] <= '9'))
 				return (1);

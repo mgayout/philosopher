@@ -6,7 +6,7 @@
 /*   By: mgayout <mgayout@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:52:55 by mgayout           #+#    #+#             */
-/*   Updated: 2024/04/04 17:14:21 by mgayout          ###   ########.fr       */
+/*   Updated: 2024/04/05 18:06:35 by mgayout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,19 @@
 # include <stdbool.h>
 //# include <stdint.h>
 
-struct 				s_data;
+struct				s_data;
 
-typedef struct 		s_philo
+typedef struct s_philo
 {
 	int				id;
 	int				meal;
-	bool			alive;
 	struct s_data	*data;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	mut_state;
-	pthread_mutex_t	mut_nb_meals_had;
-	pthread_mutex_t	mut_last_eat_time;
 	long long		lasteat;
 }					t_philo;
 
-typedef struct 		s_data
+typedef struct s_data
 {
 	int				nb_philo;
 	int				time_to_die;
@@ -47,18 +43,10 @@ typedef struct 		s_data
 	int				nb_meal;
 	bool			iterating;
 	long long		start_time;
-	//pthread_mutex_t	mut_eat_t;
-	//pthread_mutex_t	mut_die_t;
-	//pthread_mutex_t	mut_sleep_t;
-	//pthread_mutex_t	mut_print;
-	//pthread_mutex_t	mut_nb_philos;
-	//pthread_mutex_t	mut_keep_iter;
-	//pthread_mutex_t	mut_start_time;
 	pthread_mutex_t	get_value;
 	pthread_mutex_t	update_value;
 	pthread_mutex_t	writting;
 	pthread_t		monit_all_alive;
-	pthread_t		monit_all_full;
 	pthread_t		*philo_ths;
 	pthread_mutex_t	*fork;
 	t_philo			*philo;
@@ -66,27 +54,34 @@ typedef struct 		s_data
 
 //MAIN
 
+int			check_args(int argc, char **argv);
+int			philo(int argc, char **argv);
+int			join_threads(t_data *data);
+void		free_data(t_data *data);
+
 //INIT
 
 void		init_data(t_data *data, int argc, char **argv);
 int			init_malloc(t_data *data);
 void		init_philo(t_data *data);
 void		init_fork(t_data *data);
-int			init_thread(t_data *data);
 
-//PHILO
+//ROUTINE
 
-int			philo(int argc, char **argv);
+int			thread_routine(t_data *data);
 void		*philo_routine(void *philo);
-void		*all_alive_routine(void *void_data);
-int			join_threads(t_data *data);
-void		free_data(t_data *data);
+void		*dead_routine(void *void_data);
 
-//EATING
+//EAT
 
 int			eat_routine(t_philo *philo);
 int			take_forks(t_philo *philo);
 void		drop_forks(t_philo *philo);
+
+//SLEEP_THINK
+
+int			sleep_routine(t_philo *philo);
+int			think_routine(t_philo *philo);
 
 //LIBFT
 
@@ -98,8 +93,11 @@ int			digit_args(int argc, char **argv);
 long long	gettime(void);
 void		ft_usleep(size_t time);
 void		philo_writting(t_philo *philo, char *str);
+
+//UTILS2
+
 bool		philo_died(t_philo *philo);
-bool		nb_meals_option(t_data *data);
+void		stop_philo(t_data *data);
 
 //GET_DATA
 
@@ -116,11 +114,13 @@ bool		get_data_iter(t_data *data);
 //GET_PHILO
 
 long long	get_philo_lasteat(t_philo *philo);
+bool		get_philo_alive(t_philo *philo);
 
 //UPDATE_VALUE
 
 void		update_lasteat(t_philo *philo);
 void		update_nbmeal(t_philo *philo);
 void		update_iter(t_data *data, bool update);
+void		update_alive(t_philo *philo, bool update);
 
 #endif

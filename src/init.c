@@ -6,7 +6,7 @@
 /*   By: mgayout <mgayout@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:26:24 by mgayout           #+#    #+#             */
-/*   Updated: 2024/04/04 17:03:16 by mgayout          ###   ########.fr       */
+/*   Updated: 2024/04/05 18:08:20 by mgayout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,6 @@ void	init_data(t_data *data, int argc, char **argv)
 	pthread_mutex_init(&data->get_value, NULL);
 	pthread_mutex_init(&data->update_value, NULL);
 	pthread_mutex_init(&data->writting, NULL);
-	//pthread_mutex_init(&data->mut_eat_t, NULL);
-	//pthread_mutex_init(&data->mut_sleep_t, NULL);
-	//pthread_mutex_init(&data->mut_die_t, NULL);
-	//pthread_mutex_init(&data->mut_print, NULL);
-	//pthread_mutex_init(&data->mut_nb_philos, NULL);
-	//pthread_mutex_init(&data->mut_keep_iter, NULL);
-	//pthread_mutex_init(&data->mut_start_time, NULL);
 }
 
 int	init_malloc(t_data *data)
@@ -69,9 +62,6 @@ void	init_philo(t_data *data)
 		philo[i].data = data;
 		philo[i].id = i + 1;
 		philo[i].meal = 0;
-		//pthread_mutex_init(&philo[i].mut_state, NULL);
-		//pthread_mutex_init(&philo[i].mut_nb_meals_had, NULL);
-		//pthread_mutex_init(&philo[i].mut_last_eat_time, NULL);
 		update_lasteat(&philo[i]);
 	}
 }
@@ -93,28 +83,4 @@ void	init_fork(t_data *data)
 		philo[i].left_fork = &data->fork[i];
 		philo[i].right_fork = &data->fork[i - 1];
 	}
-}
-
-int	init_thread(t_data *data)
-{
-	int	i;
-	int	nb_of_philos;
-
-	nb_of_philos = get_data_nbphilo(data);
-	i = -1;
-	data->start_time = gettime();
-	while (++i < nb_of_philos)
-	{
-		if (pthread_create(&data->philo_ths[i], NULL,
-				&philo_routine, &data->philo[i]))
-			return (1);
-	}
-	if (pthread_create(&data->monit_all_alive, NULL,
-			&all_alive_routine, data))
-		return (1);
-	/*if (nb_meals_option(data) == true
-		&& pthread_create(&data->monit_all_full, NULL,
-			&all_full_routine, data))
-		return (1);*/
-	return (0);
 }

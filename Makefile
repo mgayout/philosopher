@@ -6,35 +6,46 @@
 #    By: mgayout <mgayout@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/04 12:52:52 by mgayout           #+#    #+#              #
-#    Updated: 2024/04/04 16:32:00 by mgayout          ###   ########.fr        #
+#    Updated: 2024/04/05 14:26:57 by mgayout          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = gcc
 RM = rm -rf
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
+PHILO_FLAGS = 	-g #-pthread -fsanitize=address -fsanitize=thread
+SRC_DIR = src/
+OBJ_DIR = obj/
 
-SRC =	src/main.c \
-		src/init.c \
-		src/philo.c \
-		src/eating.c \
-		src/utils/libft.c \
-		src/utils/utils.c \
-		src/utils/get_data.c \
-		src/utils/get_data2.c \
-		src/utils/get_philo.c \
-		src/utils/update_value.c \
+SRC =	main \
+		init \
+		routine \
+		eat \
+		sleep_think \
+		libft \
+		utils \
+		utils2 \
+		get_data \
+		get_data2 \
+		get_philo \
+		update_value \
 
-OBJ		=	${SRC:.c=.o}
+SRCS = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC)))
+
+OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC)))
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	@$(CC) $(OBJ) $(CFLAGS) -o $(NAME)
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	mkdir -p $(@D)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ_DIR)
 
 fclean: clean
 	$(RM) $(NAME) 
