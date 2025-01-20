@@ -6,11 +6,11 @@
 /*   By: mgayout <mgayout@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 11:11:02 by mgayout           #+#    #+#             */
-/*   Updated: 2024/04/05 18:15:57 by mgayout          ###   ########.fr       */
+/*   Updated: 2025/01/20 12:20:02 by mgayout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../include/philo.h"
 
 int	eat_routine(t_philo *philo)
 {

@@ -6,11 +6,11 @@
 /*   By: mgayout <mgayout@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 13:39:56 by mgayout           #+#    #+#             */
-/*   Updated: 2024/04/05 18:16:29 by mgayout          ###   ########.fr       */
+/*   Updated: 2025/01/20 12:20:23 by mgayout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../include/philo.h"
 
 int	thread_routine(t_data *data)
 {

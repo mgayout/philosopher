@@ -6,11 +6,11 @@
 /*   By: mgayout <mgayout@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 15:34:28 by mgayout           #+#    #+#             */
-/*   Updated: 2024/04/05 14:10:03 by mgayout          ###   ########.fr       */
+/*   Updated: 2025/01/20 12:20:07 by mgayout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../include/philo.h"
 
 int	get_data_nbphilo(t_data *data)
 {

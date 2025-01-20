@@ -6,11 +6,11 @@
 /*   By: mgayout <mgayout@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 13:26:24 by mgayout           #+#    #+#             */
-/*   Updated: 2024/04/05 18:08:20 by mgayout          ###   ########.fr       */
+/*   Updated: 2025/01/20 12:20:12 by mgayout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../include/philo.h"
 
 void	init_data(t_data *data, int argc, char **argv)
 {

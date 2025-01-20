@@ -6,49 +6,36 @@
 #    By: mgayout <mgayout@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/04 12:52:52 by mgayout           #+#    #+#              #
-#    Updated: 2024/04/05 14:26:57 by mgayout          ###   ########.fr        #
+#    Updated: 2025/01/20 12:47:56 by mgayout          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
-CC = gcc
-RM = rm -rf
-CFLAGS = -Wall -Wextra -Werror
-PHILO_FLAGS = 	-g #-pthread -fsanitize=address -fsanitize=thread
-SRC_DIR = src/
-OBJ_DIR = obj/
+FLAG = -Wall -Wextra -Werror
+PHFLAGS = -g #-pthread -fsanitize=address -fsanitize=thread
 
-SRC =	main \
-		init \
-		routine \
-		eat \
-		sleep_think \
-		libft \
-		utils \
-		utils2 \
-		get_data \
-		get_data2 \
-		get_philo \
-		update_value \
+SRCDIR	= src
+OBJDIR	= obj
+HEADIR	= include
 
-SRCS = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC)))
-
-OBJS = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC)))
+SRC		= $(shell find $(SRCDIR) -name '*.c')
+OBJ		= $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
+HEADER	= $(shell find $(HEADIR) -name '*.h')
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+$(NAME): $(OBJ)
+	@gcc $(OBJ) $(FLAG) $(PHFLAG) -o $(NAME)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	mkdir -p $(@D)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(OBJDIR)/%.o: $(SRCDIR)/%.c $(HEADER)
+	@mkdir -p $(dir $@)
+	@gcc $(FLAG) $(PHFLAG) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ_DIR)
+	@rm -rf $(OBJDIR)
 
 fclean: clean
-	$(RM) $(NAME) 
+	@rm -rf $(NAME)
 
 re: fclean all
 

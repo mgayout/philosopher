@@ -6,11 +6,11 @@
 /*   By: mgayout <mgayout@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 12:52:59 by mgayout           #+#    #+#             */
-/*   Updated: 2024/04/05 13:47:26 by mgayout          ###   ########.fr       */
+/*   Updated: 2025/01/20 12:20:15 by mgayout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "../include/philo.h"
 
 int	check_args(int argc, char **argv)
 {
